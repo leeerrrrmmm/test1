@@ -1,9 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:spark/components/my_button.dart';
-import 'package:spark/pages/home_page.dart';
-import 'package:spark/pages/result_list.dart';
-
 import 'list.dart';
 
 class LoadPage extends StatefulWidget {
@@ -32,7 +28,7 @@ class _LoadPageState extends State<LoadPage> {
 
       // Симуляция загрузки данных
       for (int i = 0; i <= 100; i++) {
-        await Future.delayed(Duration(milliseconds: 50)); // Задержка, чтобы имитировать прогресс
+        await Future.delayed(Duration(milliseconds: 50));
         setState(() {
           _progress = i / 100;
         });
@@ -52,7 +48,7 @@ class _LoadPageState extends State<LoadPage> {
   @override
   void initState() {
     super.initState();
-    loadProgress(); // Вызываем функцию для начала загрузки
+    loadProgress();
   }
 
   @override
@@ -74,13 +70,13 @@ class _LoadPageState extends State<LoadPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Разделяем пространство
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, // Центрируем содержимое
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     _isLoading
@@ -123,7 +119,7 @@ class _LoadPageState extends State<LoadPage> {
                   Navigator.of(context)
                       .push((MaterialPageRoute(builder:(context) => ListScreen(url: widget.url,))),
                   );
-                  }, // Обработчик кнопки
+                  },
                 label:  _isLoading ? 'Wait for end progress' : 'Send results to server',
                 color: _isLoading ? Colors.lightBlueAccent.shade200 : Colors.lightBlue,
               ),

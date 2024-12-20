@@ -67,7 +67,7 @@ class _ListScreenState extends State<ListScreen> {
   @override
   void initState() {
     super.initState();
-    fetchDataFromApi(); // Загружаем данные при старте
+    fetchDataFromApi();
   }
 
   @override
@@ -107,7 +107,6 @@ class _ListScreenState extends State<ListScreen> {
                 title: Text(showShortestPath,
                 textAlign: TextAlign.center,),
                 onTap: () {
-                  // При нажатии передаем данные в новый экран
                   Navigator.push(
                     context,
                     MaterialPageRoute(

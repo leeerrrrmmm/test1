@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:spark/API/response.dart';
 import 'package:spark/components/my_button.dart';
-import 'package:spark/model/some_model.dart';
+
 
 import 'load_page.dart';
 
@@ -15,25 +13,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   TextEditingController _urlController = TextEditingController();
-  Responses _responses = Responses();
-  List<DataItem> _data = [];
-  bool _isLoading = false;
   String _errorMessage = '';
-  double _progress = 0.0;
 
   GlobalKey<FormState> _key = GlobalKey<FormState>();
 
-  // Регулярное выражение для проверки URL
+
   final RegExp _urlPattern = RegExp(r'^(https?|ftp)://[^\s/$.?#].[^\s]*$');
 
-  // Функция для проверки URL
+
   String? _validateUrl(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter a URL'; // Сообщение, если поле пустое
+      return 'Please enter a URL';
     } else if (!_urlPattern.hasMatch(value)) {
-      return 'Please enter a valid URL'; // Сообщение, если формат неправильный
+      return 'Please enter a valid URL';
     }
-    return null; // URL валиден
+    return null;
   }
 
   @override
@@ -71,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                             padding: const EdgeInsets.all(20.0),
                             child: TextFormField(
                               controller: _urlController,
-                              validator: _validateUrl, // Применяем валидатор
+                              validator: _validateUrl,
                               decoration: InputDecoration(
                                 labelText: 'Url...',
                                 errorText: _errorMessage.isNotEmpty ? _errorMessage : null,
@@ -87,7 +81,6 @@ class _HomePageState extends State<HomePage> {
               MyButton(
                 onPressed: () {
                   if (_key.currentState?.validate() ?? false) {
-                    // Если форма валидна, переходим на другую страницу
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -98,7 +91,6 @@ class _HomePageState extends State<HomePage> {
                     );
                   } else {
                     setState(() {
-                      // Если ошибка, показываем сообщение
                       _errorMessage = 'Please fix the errors in the form.';
                     });
                   }
